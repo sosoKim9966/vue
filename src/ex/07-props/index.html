@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>상위 컴포넌트에서 하위 컴포넌트로 데이터 전달</title>
 </head>
 <body>
 <div id="app">
-<!--<child-component v-bind:props속성이름="상위 컴포넌트의 data 속성"></child-component>-->
+<!--
+    // 4. HTML에 컴포넌트 태그 추가 "message"는 상위 컴포넌트의 message 속성 값인 Hello -- 텍스트를 하위 컴포넌트의 propsdata로 전달
+    <child-component v-bind:props속성이름="상위 컴포넌트의 data 속성"></child-component> -->
     <child-component v-bind:propsdata="message"></child-component>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
 <script>
+    // 2. Vue.component()를 이용하여 하위 컴포넌트인 child-component를 등록
     Vue.component('child-component',{
+        // 3. child-component의 내용에 props 속성으로 propsdata를 정의
         props: ['propsdata'],
+        // 4. child-component의 template 속성에 정의된 '<p>{{propsdata}}</p>' = Hello --
         template: '<p>{{propsdata}}</p>'
     });
 
+    // 1. new Vue()로 인스턴스 하나 생성
     new Vue({
         el: '#app',
         data: {
