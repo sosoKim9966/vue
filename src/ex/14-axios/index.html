@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue with Axios Sample</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="getData">프레임워크 목록 가져오기</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<!--액시오스 라이브러리 로딩-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        methods: {
+            getData: function (){
+                // 액시오스 GET 요청 API
+                axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json')
+                    .then(function (response) {
+                        // data 속성이 일반 문자열 형식이 아니라 객체 형태이기 때문에
+                        // 별도로 JSON.parse()를 사용하여 객체로 변환할 필요가 없다.
+                        console.log(response);
+                    });
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
